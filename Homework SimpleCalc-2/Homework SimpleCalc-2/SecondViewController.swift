@@ -14,11 +14,11 @@ class SecondViewController: UIViewController {
     
     var receivedArray : [String] = [];
     
-    @IBOutlet var labels: [UILabel]!
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        scroll.contentSize = CGSizeMake(400, 2300)
         // Do any additional setup after loading the view.
         /*for n in 0 ... receivedArray.count - 1 {
             let line = UILabel()
@@ -26,16 +26,15 @@ class SecondViewController: UIViewController {
             print(line)
             self.scroll.addSubview(line)
         }*/
-        
-        var historyCount: Int = receivedArray.count - 1
-        
-        for n in 0...historyCount {
-            labels[n].text = "\(receivedArray[historyCount])"
-            historyCount = historyCount - 1
+        label.text = "";
+        var n: Int = receivedArray.count - 1
+        while n >= 0 {
+            label.text = label.text! + receivedArray[n] + "\n"
+            n = n - 1
         }
-        
-    }
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
